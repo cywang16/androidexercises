@@ -1,4 +1,0 @@
-#Mon Oct 09 10:48:23 PDT 2017
-base.0=E\:\\workplace\\GIT\\androidexercises\\PhotoIntentActivity\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0
-renamed.0=classes.dex
-file.0=E\:\\workplace\\GIT\\androidexercises\\PhotoIntentActivity\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0\\classes.dex
