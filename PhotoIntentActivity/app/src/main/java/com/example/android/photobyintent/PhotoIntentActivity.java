@@ -253,12 +253,15 @@ public class PhotoIntentActivity extends Activity {
 				mTakeVidOnClickListener,
 				MediaStore.ACTION_VIDEO_CAPTURE
 		);
-		
+
+		/*
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
 			mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
 		} else {
 			mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 		}
+		*/
+		mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 	}
 
 	@Override
