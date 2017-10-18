@@ -119,7 +119,7 @@ public class SpeechService extends Service {
                 isFinal = result.getIsFinal();
                 if (result.getAlternativesCount() > 0) {
                     final SpeechRecognitionAlternative alternative = result.getAlternatives(0);
-                    text = alternative.getTranscript();
+                    text = alternative.getTranscript() + " (" + alternative.getConfidence() + ")";
                 }
             }
             if (text != null) {
@@ -252,7 +252,8 @@ public class SpeechService extends Service {
         mRequestObserver.onNext(StreamingRecognizeRequest.newBuilder()
                 .setStreamingConfig(StreamingRecognitionConfig.newBuilder()
                         .setConfig(RecognitionConfig.newBuilder()
-                                .setLanguageCode(getDefaultLanguageCode())
+                                // .setLanguageCode(getDefaultLanguageCode())
+                                .setLanguageCode("cmn-Hant-TW")
                                 .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
                                 .setSampleRateHertz(sampleRate)
                                 .build())
