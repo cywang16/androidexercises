@@ -103,13 +103,12 @@ dependencies {
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.android.support:preference-v7:$supportLibraryVersion"
 
     // gRPC
     compile "io.grpc:grpc-okhttp:$grpcVersion"
     compile "io.grpc:grpc-protobuf-lite:$grpcVersion"
     compile "io.grpc:grpc-stub:$grpcVersion"
-    compile 'javax.annotation:javax.annotation-api:1.2'
-    protobuf 'com.google.protobuf:protobuf-java:3.3.1'
 
     // OAuth2 for Google API
     compile('com.google.auth:google-auth-library-oauth2-http:0.7.0') {
@@ -117,9 +116,12 @@ dependencies {
     }
 
     // Tests
+    compile 'javax.annotation:javax.annotation-api:1.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    protobuf 'com.google.protobuf:protobuf-java:3.3.1'
 }
 
 task copySecretKey(type: Copy) {

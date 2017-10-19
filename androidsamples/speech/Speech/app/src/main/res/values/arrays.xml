@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_language_option_labels">
+        <item>@string/pref_lang_english</item>
+        <item>@string/pref_lang_zh_tw</item>
+        <item>@string/pref_lang_zh_cn</item>
+        <item>@string/pref_lang_japanese</item>
+        <item>@string/pref_lang_korean</item>
+    </array>
+
+    <array name="pref_language_option_codes">
+        <item>@string/pref_lang_english_code</item>
+        <item>@string/pref_lang_zh_tw_code</item>
+        <item>@string/pref_lang_zh_cn_code</item>
+        <item>@string/pref_lang_japanese_code</item>
+        <item>@string/pref_lang_korean_code</item>
+    </array>
+</resources>

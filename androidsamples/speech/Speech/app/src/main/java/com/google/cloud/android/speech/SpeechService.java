@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -72,7 +73,19 @@ import io.grpc.okhttp.OkHttpChannelProvider;
 import io.grpc.stub.StreamObserver;
 
 
-public class SpeechService extends Service {
+public class SpeechService extends Service
+    implements SharedPreferences.OnSharedPreferenceChangeListener
+{
+    private String mLanguageCode;
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+    {
+        if (key.equals("languagecode"))
+        {
+            mLanguageCode = sharedPreferences.getString("languagecode",
+                    getResources().getString(R.string.pref_lang_english_code));
+        }
+    }
 
     public interface Listener {
 
@@ -179,14 +192,20 @@ public class SpeechService extends Service {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
         mHandler = new Handler();
         fetchAccessToken();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        mLanguageCode = sharedPreferences.getString("languagecode", getResources().getString(R.string.pref_lang_english_code));
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
         super.onDestroy();
         mHandler.removeCallbacks(mFetchAccessTokenRunnable);
         mHandler = null;
@@ -202,6 +221,8 @@ public class SpeechService extends Service {
             }
             mApi = null;
         }
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     private void fetchAccessToken() {
@@ -253,7 +274,8 @@ public class SpeechService extends Service {
                 .setStreamingConfig(StreamingRecognitionConfig.newBuilder()
                         .setConfig(RecognitionConfig.newBuilder()
                                 // .setLanguageCode(getDefaultLanguageCode())
-                                .setLanguageCode("cmn-Hant-TW")
+                                // .setLanguageCode("cmn-Hant-TW")
+                                .setLanguageCode(mLanguageCode)
                                 .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
                                 .setSampleRateHertz(sampleRate)
                                 .build())
@@ -302,7 +324,8 @@ public class SpeechService extends Service {
                     RecognizeRequest.newBuilder()
                             .setConfig(RecognitionConfig.newBuilder()
                                     .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
-                                    .setLanguageCode("en-US")
+                                    // .setLanguageCode("en-US")
+                                    .setLanguageCode(mLanguageCode)
                                     .setSampleRateHertz(16000)
                                     .build())
                             .setAudio(RecognitionAudio.newBuilder()

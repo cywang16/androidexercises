@@ -196,6 +196,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
             case R.id.action_file:
                 mSpeechService.recognizeInputStream(getResources().openRawResource(R.raw.audio));
                 return true;
+            case R.id.action_settings:
+                Intent startSettingsActivity = new Intent(this, activity_settings.class);
+                startActivity(startSettingsActivity);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
