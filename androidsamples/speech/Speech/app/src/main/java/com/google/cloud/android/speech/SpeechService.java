@@ -122,21 +122,40 @@ public class SpeechService extends Service
     private static Handler mHandler;
 
     private final StreamObserver<StreamingRecognizeResponse> mResponseObserver
-            = new StreamObserver<StreamingRecognizeResponse>() {
+            = new StreamObserver<StreamingRecognizeResponse>()
+    {
         @Override
-        public void onNext(StreamingRecognizeResponse response) {
+        public void onNext(StreamingRecognizeResponse response)
+        {
             String text = null;
+            StringBuilder recoText = new StringBuilder();
             boolean isFinal = false;
             if (response.getResultsCount() > 0) {
                 final StreamingRecognitionResult result = response.getResults(0);
                 isFinal = result.getIsFinal();
-                if (result.getAlternativesCount() > 0) {
+                int alternativeCount = result.getAlternativesCount();
+                Log.i(TAG, String.format("alternativeCount: %d, isFinal: %b", alternativeCount, isFinal));
+                /*
+                if ( alternativeCount > 0)
+                {
                     final SpeechRecognitionAlternative alternative = result.getAlternatives(0);
                     text = alternative.getTranscript() + " (" + alternative.getConfidence() + ")";
                 }
+                */
+                for (int indAlt = 0; indAlt < alternativeCount; indAlt++)
+                {
+                    final SpeechRecognitionAlternative oneAlt = result.getAlternatives(indAlt);
+                    recoText.append(String.format("%s (%f)\n", oneAlt.getTranscript(), oneAlt.getConfidence()));
+                }
+                if ( alternativeCount > 0)
+                {
+                    text = recoText.toString();
+                }
             }
-            if (text != null) {
-                for (Listener listener : mListeners) {
+            if (text != null)
+            {
+                for (Listener listener : mListeners)
+                {
                     listener.onSpeechRecognized(text, isFinal);
                 }
             }
