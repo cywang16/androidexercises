@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ScratchGlossary</string>
+    <string name="keyword">Keyword</string>
+    <string name="info">Info</string>
+    <string name="find">Find Item</string>
+    <string name="add">Add Item</string>
 </resources>
