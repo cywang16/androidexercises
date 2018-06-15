@@ -24,18 +24,19 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="callWebService"
             android:text="Button" />
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/tv_webUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_webOutput"
         android:layout_width="match_parent"
         android:layout_height="397dp"
         android:text="TextView" />
