@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,13 @@ public class AudioRecorder extends AppCompatActivity {
         }
         if (!permissionToRecordAccepted ) finish();
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.recorder_activity);
+        recordButton = (RecordButton)findViewById(R.id.record_button);
     }
 
     private void onRecord(boolean start) {
