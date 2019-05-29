@@ -50,7 +50,9 @@ public class AudioRecorder extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.recorder_activity);
-        recordButton = (RecordButton)findViewById(R.id.record_button);
+        // recordButton = (RecordButton)findViewById(R.id.record_button);
+        recordButton = new RecordButton(findViewById(R.id.record_button).getContext());
+        playButton = new PlayButton(findViewById(R.id.play_button).getContext());
     }
 
     private void onRecord(boolean start) {
@@ -107,7 +109,8 @@ public class AudioRecorder extends AppCompatActivity {
         recorder = null;
     }
 
-    class RecordButton extends Button {
+    // class RecordButton extends Button {
+    class RecordButton extends android.support.v7.widget.AppCompatButton {
         boolean mStartRecording = true;
 
         OnClickListener clicker = new OnClickListener() {
@@ -129,7 +132,8 @@ public class AudioRecorder extends AppCompatActivity {
         }
     }
 
-    class PlayButton extends Button {
+    // class PlayButton extends Button {
+    class PlayButton extends android.support.v7.widget.AppCompatButton {
         boolean mStartPlaying = true;
 
         OnClickListener clicker = new OnClickListener() {
