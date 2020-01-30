@@ -24,5 +24,10 @@ public class MyClass {
         boolean bres = vap.isSolvable();
         System.out.printf("Is solvable? %b\n", bres);
         if (bres) vap.result();
+
+        FriendsPairing fp = new FriendsPairing();
+        for (int i = 1; i < 90; i++) {
+            System.out.printf("%d %d\n", i, fp.CountPairing(i));
+        }
     }
 }
