@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements
             @Nullable
             @Override
             public String[] loadInBackground() {
-                String diningQuery = "city=bellevue";
+                String diningQuery = String.format("city=%s", RestaurantUtils.getPreferredRestaurantLocation(MainActivity.this));
 
                 try {
                     String diningJsonString = RestaurantUtils.getDiningResponseFromQuery(diningQuery);

@@ -11,6 +11,8 @@
 
     <string name="pref_city_key" translatable="false">City</string>
 
+    <string name="pref_city_default" translatable="false">Bellevue</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.example.opentableexercise;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,5 +49,13 @@ public final class RestaurantUtils {
         JSONObject restaurantJson = new JSONObject(restaurantJsonStr);
         if (restaurantJson.has(key)) return restaurantJson.getString(key);
         else return "";
+    }
+
+    public static String getPreferredRestaurantLocation(Context context) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String keyForLocation = context.getString(R.string.pref_city_key);
+        String defaultLocation = context.getString(R.string.pref_city_default);
+        return prefs.getString(keyForLocation, defaultLocation);
     }
 }
