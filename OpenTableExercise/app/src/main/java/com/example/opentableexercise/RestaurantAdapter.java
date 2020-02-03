@@ -81,6 +81,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     public void setRestaurantData(String[] restaurants) {
         mRestaurantData = restaurants;
+        notifyDataSetChanged();
     }
 
     private class GetImageTask extends AsyncTask<String, Void, Drawable> {
