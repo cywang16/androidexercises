@@ -33,14 +33,31 @@ public final class RestaurantUtils {
         return response.body().string();
     }
 
-    public static String[] getDiningStringsFromJson(String diningJsonStr)
-            throws JSONException {
+    public static String[] getDiningStringsFromJson(String diningJsonStr, String query)
+            throws JSONException, IOException {
         JSONObject diningJson = new JSONObject(diningJsonStr);
         JSONArray diningArray = diningJson.getJSONArray("restaurants");
-        String parsedDiningData[] = new String[diningArray.length()];
+        int count = diningJson.getInt("total_entries");
+        String parsedDiningData[] = new String[count];
+        int page = 1, i = 0;
+        while (count > 0) {
+            int j = i;
+            while (j < i + 100 && j < parsedDiningData.length) {
+                parsedDiningData[j] = diningArray.getJSONObject(j - i).toString();
+                j++;
+                count--;
+            }
+            i = j;
+            if (i < parsedDiningData.length) {
+                diningJson = new JSONObject(getDiningResponseFromQuery(String.format("%s&page=%d", query, ++page)));
+                diningArray = diningJson.getJSONArray("restaurants");
+            }
+        }
+        /*
         for (int i = 0; i < diningArray.length(); i++) {
             parsedDiningData[i] = diningArray.getJSONObject(i).toString();
         }
+         */
         return parsedDiningData;
     }
 

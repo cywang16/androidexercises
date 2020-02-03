@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 try {
                     String diningJsonString = RestaurantUtils.getDiningResponseFromQuery(diningQuery);
-                    String[] restaurantJsonData = RestaurantUtils.getDiningStringsFromJson(diningJsonString);
+                    String[] restaurantJsonData = RestaurantUtils.getDiningStringsFromJson(diningJsonString, diningQuery);
 
                     return restaurantJsonData;
                 } catch (Exception e) {
