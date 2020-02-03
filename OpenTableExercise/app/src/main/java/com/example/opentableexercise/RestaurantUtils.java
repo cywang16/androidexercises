@@ -44,6 +44,7 @@ public final class RestaurantUtils {
     public static String getRestaurantJsonString(String restaurantJsonStr, String key)
             throws JSONException {
         JSONObject restaurantJson = new JSONObject(restaurantJsonStr);
-        return restaurantJson.getString(key);
+        if (restaurantJson.has(key)) return restaurantJson.getString(key);
+        else return "";
     }
 }

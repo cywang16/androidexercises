@@ -22,6 +22,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     private static final String TAG = RestaurantAdapter.class.getSimpleName();
     private String[] mRestaurantData;
 
+    final private RestaurantAdapterOnClickHandler mRestaurantOnClickHandler;
+
+    public interface RestaurantAdapterOnClickHandler {
+        void onClick(String restaurantJsonStr);
+    }
+
+    public RestaurantAdapter(RestaurantAdapterOnClickHandler handler) {
+        mRestaurantOnClickHandler = handler;
+    }
+
     public class RestaurantAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final ImageView mRestaurantImage;
         public final TextView mRestaurantName;
@@ -35,7 +45,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         @Override
         public void onClick(View view) {
-
+            int adapterPosition = getAdapterPosition();
+            String restaurant = mRestaurantData[adapterPosition];
+            mRestaurantOnClickHandler.onClick(restaurant);
         }
     }
 
@@ -59,11 +71,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             Log.i(TAG, name);
             holder.mRestaurantName.setText(name);
             String image_url = RestaurantUtils.getRestaurantJsonString(restaurantJsonStr, "image_url");
-            /*
-            InputStream is = (InputStream) new URL(image_url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            holder.mRestaurantImage.setImageDrawable(d);
-            */
             new GetImageTask(holder.mRestaurantImage).execute(image_url);
             Log.i(TAG, image_url);
         } catch (JSONException je) {

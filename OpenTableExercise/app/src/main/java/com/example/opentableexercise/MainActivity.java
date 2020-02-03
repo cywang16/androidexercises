@@ -9,6 +9,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements
+        RestaurantAdapter.RestaurantAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<String[]> {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements
                 = new LinearLayoutManager(this, recyclerViewOrientation, shouldReverseLayout);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mRestaurantAdapter = new RestaurantAdapter();
+        mRestaurantAdapter = new RestaurantAdapter(this);
         mRecyclerView.setAdapter(mRestaurantAdapter);
         LoaderManager.LoaderCallbacks<String[]> callback = MainActivity.this;
         Bundle bundleForLoader = null;
@@ -59,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(String restaurantJsonStr) {
+        Intent intentToStartDetailActivity = new Intent(this, DetailPage.class);
+        intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, restaurantJsonStr);
+        startActivity(intentToStartDetailActivity);
     }
 
     @NonNull
