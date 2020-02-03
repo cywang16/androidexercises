@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -68,6 +71,26 @@ public class MainActivity extends AppCompatActivity implements
         Intent intentToStartDetailActivity = new Intent(this, DetailPage.class);
         intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, restaurantJsonStr);
         startActivity(intentToStartDetailActivity);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Intent startSettingPage = new Intent(this, SettingPage.class);
+            startActivity(startSettingPage);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @NonNull
