@@ -53,11 +53,6 @@ public final class RestaurantUtils {
                 diningArray = diningJson.getJSONArray("restaurants");
             }
         }
-        /*
-        for (int i = 0; i < diningArray.length(); i++) {
-            parsedDiningData[i] = diningArray.getJSONObject(i).toString();
-        }
-         */
         return parsedDiningData;
     }
 
