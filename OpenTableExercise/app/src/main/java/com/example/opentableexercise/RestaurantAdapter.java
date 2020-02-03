@@ -2,6 +2,7 @@ package com.example.opentableexercise;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,9 +59,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             Log.i(TAG, name);
             holder.mRestaurantName.setText(name);
             String image_url = RestaurantUtils.getRestaurantJsonString(restaurantJsonStr, "image_url");
+            /*
             InputStream is = (InputStream) new URL(image_url).getContent();
             Drawable d = Drawable.createFromStream(is, "src name");
             holder.mRestaurantImage.setImageDrawable(d);
+            */
+            new GetImageTask(holder.mRestaurantImage).execute(image_url);
             Log.i(TAG, image_url);
         } catch (JSONException je) {
             Log.e(TAG, je.toString());
@@ -77,5 +81,30 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     public void setRestaurantData(String[] restaurants) {
         mRestaurantData = restaurants;
+    }
+
+    private class GetImageTask extends AsyncTask<String, Void, Drawable> {
+        ImageView bmImage;
+
+        public GetImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Drawable doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Drawable d = null;
+            try {
+                InputStream is = (InputStream) new URL(urldisplay).getContent();
+                d = Drawable.createFromStream(is, "src name");
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return d;
+        }
+
+        protected void onPostExecute(Drawable result) {
+            bmImage.setImageDrawable(result);
+        }
     }
 }
