@@ -54,11 +54,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     public void onBindViewHolder(@NonNull RestaurantAdapterViewHolder holder, int position) {
         String restaurantJsonStr = mRestaurantData[position];
         try {
-            holder.mRestaurantName.setText(RestaurantUtils.getRestaurantJsonString(restaurantJsonStr, "name"));
-            InputStream is = (InputStream) new URL(RestaurantUtils
-                    .getRestaurantJsonString(restaurantJsonStr, "image_url")).getContent();
+            String name = RestaurantUtils.getRestaurantJsonString(restaurantJsonStr, "name");
+            Log.i(TAG, name);
+            holder.mRestaurantName.setText(name);
+            String image_url = RestaurantUtils.getRestaurantJsonString(restaurantJsonStr, "image_url");
+            InputStream is = (InputStream) new URL(image_url).getContent();
             Drawable d = Drawable.createFromStream(is, "src name");
             holder.mRestaurantImage.setImageDrawable(d);
+            Log.i(TAG, image_url);
         } catch (JSONException je) {
             Log.e(TAG, je.toString());
         } catch (Exception e) {
