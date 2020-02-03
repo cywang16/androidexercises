@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-// import static com.example.opentableexercise.RestaurantUtils;
-
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<String[]> {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_restaurants);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         int recyclerViewOrientation = RecyclerView.VERTICAL;
