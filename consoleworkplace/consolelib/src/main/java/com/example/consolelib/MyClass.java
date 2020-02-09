@@ -1,7 +1,5 @@
 package com.example.consolelib;
 
-import java.util.List;
-
 public class MyClass {
     public static void main(String[] args) {
         /*
@@ -25,9 +23,26 @@ public class MyClass {
         System.out.printf("Is solvable? %b\n", bres);
         if (bres) vap.result();
 
+        /*
         FriendsPairing fp = new FriendsPairing();
         for (int i = 1; i < 90; i++) {
             System.out.printf("%d %d\n", i, fp.CountPairing(i));
+        }
+        */
+
+        for (int t = 10; t <= 20; t++) {
+            String a = stringUtils.create(t + 3), b = stringUtils.create(t);
+            long beginT = System.nanoTime();
+            int lcsl = stringUtils.LCS(a, b);
+            long lcsT = System.nanoTime() - beginT;
+            String lcs = stringUtils.getLCS(a, b);
+            long getLcsT = System.nanoTime() - beginT - lcsT;
+            String lcsd = stringUtils.getLCSD(a, b);
+            long getLcsdT = System.nanoTime() - beginT - lcsT - getLcsT;
+            System.out.printf("t: %d, a: %s\nb: %s\n", t, a, b);
+            System.out.printf("lcs: %d, %d\n", lcsl, lcsT);
+            System.out.printf("lcs:  %s, %d\n", lcs, getLcsT);
+            System.out.printf("lcsd: %s, %d\n", lcsd, getLcsdT);
         }
     }
 }
