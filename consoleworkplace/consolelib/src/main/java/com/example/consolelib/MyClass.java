@@ -39,7 +39,7 @@ public class MyClass {
             long getLcsT = System.nanoTime() - beginT - lcsT;
             String lcsd = stringUtils.getLCSD(a, b);
             long getLcsdT = System.nanoTime() - beginT - lcsT - getLcsT;
-            System.out.printf("t: %d, a: %s\nb: %s\n", t, a, b);
+            System.out.printf("t: %d\na: %s\nb: %s\n", t, a, b);
             System.out.printf("lcs: %d, %d\n", lcsl, lcsT);
             System.out.printf("lcs:  %s, %d\n", lcs, getLcsT);
             System.out.printf("lcsd: %s, %d\n", lcsd, getLcsdT);
