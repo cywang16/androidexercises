@@ -1,2 +1,3 @@
 include ':app', ':consolelib'
 rootProject.name='consoleworkplace'
+include ':Acey'
