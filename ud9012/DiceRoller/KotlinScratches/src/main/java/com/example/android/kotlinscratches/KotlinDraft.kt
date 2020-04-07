@@ -1,11 +1,16 @@
 package com.example.android.kotlinscratches
 import java.util.*
 
+fun main(args: Array<String>) {
+    val testclass = KotlinDraft()
+    testclass.feedTheFish()
+}
+
 public class KotlinDraft {
     fun feedTheFish() {
         val day = randomDay()
         val food = "pellets"
-        println ("Today is $day and the fish eat $food")
+        println ("Today is $day and the fish eat $food.")
     }
 
     fun randomDay() : String {
@@ -13,9 +18,4 @@ public class KotlinDraft {
             "Friday", "Saturday", "Sunday")
         return week[Random().nextInt(week.size)]
     }
-}
-
-fun main(args: Array<String>) {
-    // val testclass = KotlinDraft()
-    // testclass.feedTheFish()
 }

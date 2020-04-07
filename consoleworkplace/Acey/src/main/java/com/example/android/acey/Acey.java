@@ -4,7 +4,71 @@ import java.util.Random;
 
 public class Acey
 {
+    private static void DisplayCard(int V, String C)
+    {
+        //  Specifies a card value and suit
+        String cardLabel = "";
+        String cardSuit = "";
+        switch (V % 13 + 1)
+        {
+            case 1:
+                cardLabel = "2";
+                break;
+            case 2:
+                cardLabel = "3";
+                break;
+            case 3:
+                cardLabel = "4";
+                break;
+            case 4:
+                cardLabel = "5";
+                break;
+            case 5:
+                cardLabel = "6";
+                break;
+            case 6:
+                cardLabel = "7";
+                break;
+            case 7:
+                cardLabel = "8";
+                break;
+            case 8:
+                cardLabel = "9";
+                break;
+            case 9:
+                cardLabel = "10";
+                break;
+            case 10:
+                cardLabel = "Jack";
+                break;
+            case 11:
+                cardLabel = "Queen";
+                break;
+            case 12:
+                cardLabel = "King";
+                break;
+            case 13:
+                cardLabel = "Ace";
+                break;
+        }
+        switch ((int) (V / 13))
+        {
+            case 0:
+                cardSuit = "Hearts";
+                break;
+            case 1:
+                cardSuit = "Clubs";
+                break;
+            case 2:
+                cardSuit = "Diamonds";
+                break;
+            case 3:
+                cardSuit = "Spades";
+                break;
+        }
+        System.out.println(C + " card: " + cardLabel + " of " + cardSuit);
 
+    }
 
     public static void main(String[] args)
     {
@@ -96,72 +160,6 @@ public class Acey
             while (anotherTurn);
         }
         while (Keyin.inString("\nPlay again? (enter a y for yes)").equals("y"));
-    }
-
-    private static void DisplayCard(int V, String C)
-    {
-        //  Specifies a card value and suit
-        String cardLabel = "";
-        String cardSuit = "";
-        switch (V % 13 + 1)
-        {
-            case 1:
-                cardLabel = "2";
-                break;
-            case 2:
-                cardLabel = "3";
-                break;
-            case 3:
-                cardLabel = "4";
-                break;
-            case 4:
-                cardLabel = "5";
-                break;
-            case 5:
-                cardLabel = "6";
-                break;
-            case 6:
-                cardLabel = "7";
-                break;
-            case 7:
-                cardLabel = "8";
-                break;
-            case 8:
-                cardLabel = "9";
-                break;
-            case 9:
-                cardLabel = "10";
-                break;
-            case 10:
-                cardLabel = "Jack";
-                break;
-            case 11:
-                cardLabel = "Queen";
-                break;
-            case 12:
-                cardLabel = "King";
-                break;
-            case 13:
-                cardLabel = "Ace";
-                break;
-        }
-        switch ((int) (V / 13))
-        {
-            case 0:
-                cardSuit = "Hearts";
-                break;
-            case 1:
-                cardSuit = "Clubs";
-                break;
-            case 2:
-                cardSuit = "Diamonds";
-                break;
-            case 3:
-                cardSuit = "Spades";
-                break;
-        }
-        System.out.println(C + " card: " + cardLabel + " of " + cardSuit);
-
     }
 
     private static int[] NIntegers(int n)
