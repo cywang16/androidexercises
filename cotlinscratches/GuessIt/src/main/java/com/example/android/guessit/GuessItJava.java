@@ -15,7 +15,7 @@ public class GuessItJava {
         System.out.println("I'm thinking of a number between 1 and 10.");
 
         // get your guess
-        System.out.println("What do you think it is?");
+        System.out.print("What do you think it is?");
         yourGuess = myScanner.nextInt();
 
         // analyze guess and print results
