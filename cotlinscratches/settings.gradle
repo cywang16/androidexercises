@@ -1,3 +1,4 @@
+include ':HelloWorld'
 include ':app', ':consolelibs'
 rootProject.name='cotlinscratches'
 include ':GuessIt'
